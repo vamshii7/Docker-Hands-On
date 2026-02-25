@@ -29,11 +29,11 @@ jobs:
           tags: ${{ env.IMAGE_NAME }}
 
       - name: Make test script executable
-        run: chmod +x ./scripts/run-tests.sh
+        run: chmod +x ./ttt/v3.2/scripts/run-tests.sh
 
       - name: Run Container Tests
         run: |
-          ./scripts/run-tests.sh ${{ env.IMAGE_NAME }}
+          ./ttt/v3.2/scripts/run-tests.sh ${{ env.IMAGE_NAME }}
 
   push-image:
     if: github.event_name == 'push'

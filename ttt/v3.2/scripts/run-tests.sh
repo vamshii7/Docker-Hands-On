@@ -12,15 +12,18 @@ sleep 10
 
 echo "Checking application availability..."
 
-STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:$PORT)
+for i in {1..10}; do
+  STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:$PORT || echo "000")
+  if [ "$STATUS" = "200" ]; then
+    echo "✅ Application reachable"
+    docker stop test-container
+    exit 0
+  fi
+  echo "Waiting..."
+  sleep 3
+done
 
-if [ "$STATUS" != "200" ]; then
-  echo "❌ Application not reachable. HTTP Status: $STATUS"
-  docker logs test-container
-  docker stop test-container
-  exit 1
-fi
-
-echo "✅ Application reachable"
-
+echo "❌ Application not reachable. HTTP Status: $STATUS"
+docker logs test-container
 docker stop test-container
+exit 1
