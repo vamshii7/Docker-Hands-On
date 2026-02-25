@@ -1,5 +1,5 @@
 # Ubuntu-based toolbox image
-FROM ubuntu:22.04
+FROM ubuntu:latest
 
 # Install essential debugging tools in one layer
 RUN apt-get update && \
