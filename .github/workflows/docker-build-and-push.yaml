@@ -28,7 +28,7 @@ jobs:
       # Example: Run tests inside container
       - name: Run Tests
         run: |
-          docker run --rm myapp:test echo "Hello from ubuntu Tool-Box"
+          docker run --rm myapp:test echo "Hello from ubuntu Tool-Box PR"
 
   push-image:
     if: github.event_name == 'push'
