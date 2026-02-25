@@ -5,7 +5,7 @@ IMAGE_NAME=$1
 PORT=8080
 
 echo "Starting container..."
-docker run -d -p $PORT:8080 --name test-container $IMAGE_NAME
+docker run -d -p $PORT:80 --name test-container $IMAGE_NAME
 
 echo "Waiting for container to be ready..."
 sleep 10
